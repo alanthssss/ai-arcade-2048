@@ -63,3 +63,41 @@ python -m eval.evaluate_dqn_2048 \
   --episodes 50
 - 持续训练曲线
 tensorboard --logdir logs
+
+# DQN_X(dev)
+- 初次
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --eval-episodes 50 \
+  --callback-eval-freq 50000 \
+  --callback-eval-episodes 20
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --eval-episodes 50 \
+  --callback-eval-freq 50000 \
+  --callback-eval-episodes 20
+- 后续
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --continue-from models/dqn_2048_v1_latest.zip \
+  --eval-episodes 50 \
+  --callback-eval-freq 50000 \
+  --callback-eval-episodes 20
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --continue-from models/dqn_2048_v1_latest.zip \
+  --eval-episodes 50 \
+  --callback-eval-freq 50000 \
+  --callback-eval-episodes 20
+
+- csv
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_latest.zip \
+  --episodes 50 \
+  --csv-path eval_results.csv \
+  --tag v1_2000k
+
