@@ -23,3 +23,43 @@ python -m train.train_dqn_2048
 # 用 DQN 模型玩 2048
 python -m play.play_dqn
 # ai-arcade-2048
+
+# 多次训练
+- 初次
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_steps200000_20251204-111341.zip \
+  --episodes 50
+- 后续
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --continue-from models/dqn_2048_v1_steps200000_20251204-111341.zip
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_steps400000_20251204-111902.zip \
+  --episodes 50
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 200000 \
+  --continue-from models/dqn_2048_v1_steps400000_20251204-111902.zip
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_steps600000_20251204-112859.zip \
+  --episodes 50
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 400000 \
+  --continue-from models/dqn_2048_v1_steps600000_20251204-112859.zip
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_steps1000000_20251204-113615.zip \
+  --episodes 50
+python -m train.train_dqn_2048 \
+  --experiment-name dqn_2048_v1 \
+  --total-timesteps 1000000 \
+  --continue-from models/dqn_2048_v1_steps1000000_20251204-113615.zip
+python -m eval.evaluate_dqn_2048 \
+  --model-path models/dqn_2048_v1_steps2000000_20251204-114402.zip \
+  --episodes 50
+- 持续训练曲线
+tensorboard --logdir logs
