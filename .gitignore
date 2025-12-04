@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+env/
+venv/
+ENV/
+*.egg-info/
+
+# ML artifacts
+checkpoints/
+models/
+logs/
+output/
+data/
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
